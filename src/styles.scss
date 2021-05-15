@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.form {
+  .form-input {
+    margin-bottom: 40px;
+
+    label {
+      font-size: 18px;
+      font-weight: 400;
+      color: #3b69ff;
+      display: block;
+      margin-bottom: 20px;
+
+      @media (max-width: 767px) {
+        color: #ffffff;
+      }
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #eeeeee;
+      border-radius: 4px;
+    }
+  }
+}
+
+a {
+  &.link {
+    color: #3b69ff;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+
+    &.mobile {
+      @media (max-width: 767px) {
+        color: #ffffff;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &.btn-blue {
+    border-radius: 10px;
+    background: #3b69ff;
+    padding: 10px 50px;
+    color: #ffffff;
+    text-decoration: none;
+
+    &.mobile {
+      @media (max-width: 767px) {
+        background: #ffffff;
+        color: #3b69ff;
+      }
+    }
+  }
+}

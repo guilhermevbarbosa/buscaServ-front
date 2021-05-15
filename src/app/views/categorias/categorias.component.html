@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<section>
+    <h1>Categorias de serviços</h1>
+
+    <div class="cards">
+        <div class="card-space" *ngFor="let card of categorias">
+            <app-card-categorias [title]="card.title" [icon]="card.icon"></app-card-categorias>
+        </div>
+    </div>
+
+</section>
