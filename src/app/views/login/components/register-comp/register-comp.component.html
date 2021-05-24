@@ -1,38 +1,50 @@
 <div class="container">
-  <div class="form">
+  <form class="form">
     <div class="form-input">
       <label for="name">Nome</label>
-      <input type="text" name="name">
+      <input [(ngModel)]="userData.name" type="text" name="name">
+
+      <span *ngIf='errName'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="email">E-mail</label>
-      <input type="text" name="email">
+      <input [(ngModel)]="userData.email" type="text" name="email">
+
+      <span *ngIf='errEmail'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="telef">Telefone</label>
-      <input type="tel" name="telef">
+      <input [(ngModel)]="userData.tel" type="tel" name="tel">
+
+      <span *ngIf='errTel'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="cpf">CPF</label>
-      <input type="text" name="cpf">
+      <input [(ngModel)]="userData.cpf_cnpj" type="text" name="cpf_cnpj">
+
+      <span *ngIf='errCPF'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="cep">CEP</label>
-      <input type="text" name="cep">
+      <input [(ngModel)]="userData.cep" type="text" name="cep">
+
+      <span *ngIf='errCEP'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="address">Endereço</label>
-      <input type="text" name="address">
+      <input [(ngModel)]="userData.address" type="text" name="address">
+
+      <span *ngIf='errEnd'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="state">Estado</label>
-      <select name="state">
+      <select [(ngModel)]="userData.state" name="state">
         <option value="SP">SP</option>
         <option value="RJ">RJ</option>
         <option value="RS">RS</option>
@@ -42,18 +54,21 @@
 
     <div class="form-input">
       <label for="city">Cidade</label>
-      <input type="text" name="city">
+      <input [(ngModel)]="userData.city" type="text" name="city">
+
+      <span *ngIf='errCity'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="password">Senha</label>
-      <input type="password" name="password">
+      <input [(ngModel)]="userData.password" type="password" name="password">
+
+      <span *ngIf='errPass'>Erro campo obrigatório</span>
     </div>
 
-  </div>
-
-  <div class="btns">
-    <a (click)="handleClick($event)" class="link mobile">Voltar ao login</a>
-    <a href="#" class="btn-blue mobile">Criar conta</a>
-  </div>
+    <div class="btns">
+      <a (click)="handleClick($event)" class="link mobile">Voltar ao login</a>
+      <a (click)="createUser()" class="btn-blue mobile">Criar conta</a>
+    </div>
+  </form>
 </div>

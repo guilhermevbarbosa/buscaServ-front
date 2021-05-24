@@ -4,6 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// Para usar [(ngModel)]
+import { FormsModule } from '@angular/forms';
+// Para usar [(ngModel)]
+
+// Para requisições http
+import { HttpClientModule } from '@angular/common/http';
+// Para requisições http
+
 // LOGIN
 import { LoginComponent } from './views/login/login.component';
 import { LoginCompComponent } from './views/login/components/login-comp/login-comp.component';
@@ -30,7 +38,9 @@ import { CardCategoriasComponent } from './components/card-categorias/card-categ
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
