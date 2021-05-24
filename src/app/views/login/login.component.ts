@@ -9,7 +9,16 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
+  fieldsType = 'login';
+
   ngOnInit(): void {
   }
 
+  criarContaClick(e) {
+    this.fieldsType = 'cadastro';
+  }
+
+  voltarLoginClick(e) {
+    this.fieldsType = 'login';
+  }
 }

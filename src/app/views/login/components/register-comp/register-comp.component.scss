@@ -1,19 +1,20 @@
 .container {
-    padding-top: 50px;
-    padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 80px;
 
-    .btns {
-        display: flex;
-        justify-content: space-between;
+  .btns {
+    display: flex;
+    justify-content: space-between;
 
-        @media (max-width: 767px) {
-            flex-wrap: wrap;
-            flex-direction: column-reverse;
-            align-items: center;
-        }
-
-        a {
-            display: block;
-        }
+    @media (max-width: 767px) {
+      flex-wrap: wrap;
+      flex-direction: column-reverse;
+      align-items: center;
     }
+
+    a {
+      display: block;
+      cursor: pointer;
+    }
+  }
 }

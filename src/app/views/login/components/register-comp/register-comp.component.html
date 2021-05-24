@@ -1,59 +1,59 @@
 <div class="container">
-    <div class="form">
-        <div class="form-input">
-            <label for="name">Nome</label>
-            <input type="text" name="name">
-        </div>
-
-        <div class="form-input">
-            <label for="email">E-mail</label>
-            <input type="text" name="email">
-        </div>
-
-        <div class="form-input">
-            <label for="telef">Telefone</label>
-            <input type="tel" name="telef">
-        </div>
-
-        <div class="form-input">
-            <label for="cpf">CPF</label>
-            <input type="text" name="cpf">
-        </div>
-
-        <div class="form-input">
-            <label for="cep">CEP</label>
-            <input type="text" name="cep">
-        </div>
-
-        <div class="form-input">
-            <label for="address">Endereço</label>
-            <input type="text" name="address">
-        </div>
-
-        <div class="form-input">
-            <label for="state">Estado</label>
-            <select name="state">
-                <option value="SP">SP</option>
-                <option value="RJ">RJ</option>
-                <option value="RS">RS</option>
-                <option value="DF">DF</option>
-            </select>
-        </div>
-
-        <div class="form-input">
-            <label for="city">Cidade</label>
-            <input type="text" name="city">
-        </div>
-
-        <div class="form-input">
-            <label for="password">Senha</label>
-            <input type="password" name="password">
-        </div>
-
+  <div class="form">
+    <div class="form-input">
+      <label for="name">Nome</label>
+      <input type="text" name="name">
     </div>
 
-    <div class="btns">
-        <a href="#" class="link mobile">Voltar ao login</a>
-        <a href="#" class="btn-blue mobile">Criar conta</a>
+    <div class="form-input">
+      <label for="email">E-mail</label>
+      <input type="text" name="email">
     </div>
+
+    <div class="form-input">
+      <label for="telef">Telefone</label>
+      <input type="tel" name="telef">
+    </div>
+
+    <div class="form-input">
+      <label for="cpf">CPF</label>
+      <input type="text" name="cpf">
+    </div>
+
+    <div class="form-input">
+      <label for="cep">CEP</label>
+      <input type="text" name="cep">
+    </div>
+
+    <div class="form-input">
+      <label for="address">Endereço</label>
+      <input type="text" name="address">
+    </div>
+
+    <div class="form-input">
+      <label for="state">Estado</label>
+      <select name="state">
+        <option value="SP">SP</option>
+        <option value="RJ">RJ</option>
+        <option value="RS">RS</option>
+        <option value="DF">DF</option>
+      </select>
+    </div>
+
+    <div class="form-input">
+      <label for="city">Cidade</label>
+      <input type="text" name="city">
+    </div>
+
+    <div class="form-input">
+      <label for="password">Senha</label>
+      <input type="password" name="password">
+    </div>
+
+  </div>
+
+  <div class="btns">
+    <a (click)="handleClick($event)" class="link mobile">Voltar ao login</a>
+    <a href="#" class="btn-blue mobile">Criar conta</a>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login-comp',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-comp.component.scss']
 })
 export class LoginCompComponent implements OnInit {
+  @Output()
+  public clickedBtn = new EventEmitter<MouseEvent>();
+
+  public handleClick(event: MouseEvent) {
+    this.clickedBtn.emit(event);
+  }
 
   constructor() { }
 

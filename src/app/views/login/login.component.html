@@ -1,17 +1,22 @@
 <section class="home">
-    <div class="left-side">
-        <div class="title">
-            <h1>BuscaServ</h1>
-            <h2>
-                O buscador de serviços na palma da sua mão
-            </h2>
-        </div>
+  <div class="left-side">
+    <div class="title">
+      <h1>BuscaServ</h1>
+      <h2>
+        O buscador de serviços na palma da sua mão
+      </h2>
     </div>
+  </div>
 
-    <div class="right-side">
-        <div class="form-area">
-            <app-login-comp></app-login-comp>
-            <app-register-comp></app-register-comp>
-        </div>
+  <div class="right-side">
+    <div class="form-area">
+      <div *ngIf="fieldsType == 'login'" class="login">
+        <app-login-comp (clickedBtn)="criarContaClick($event)"></app-login-comp>
+      </div>
+
+      <div *ngIf="fieldsType == 'cadastro'" class="cadastro">
+        <app-register-comp (clickedBtn)="voltarLoginClick($event)"></app-register-comp>
+      </div>
     </div>
+  </div>
 </section>
