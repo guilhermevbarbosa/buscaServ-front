@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 // Para usar [(ngModel)]
 import { FormsModule } from '@angular/forms';
 // Para usar [(ngModel)]
@@ -40,7 +42,8 @@ import { CardCategoriasComponent } from './components/card-categorias/card-categ
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
