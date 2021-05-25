@@ -87,7 +87,6 @@ export class RegisterCompComponent implements OnInit {
   }
 
   validaForm() {
-
     if (!this.userData.name || this.userData.name.length < 1) {
       this.errName = true;
     } else {

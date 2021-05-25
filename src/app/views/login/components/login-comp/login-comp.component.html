@@ -1,18 +1,22 @@
 <div class="container">
-    <div class="form">
-        <div class="form-input">
-            <label for="email">E-mail</label>
-            <input type="text" name="email">
-        </div>
+  <div class="form">
+    <div class="form-input">
+      <label for="email">E-mail</label>
+      <input [(ngModel)]="loginData.email" type="text" name="email">
 
-        <div class="form-input">
-            <label for="password">Senha</label>
-            <input type="password" name="password">
-        </div>
+      <span *ngIf='errEmail'>Erro! campo obrigatório</span>
     </div>
 
-    <div class="btns">
-        <a (click)="handleClick($event)" class="link mobile">Criar conta</a>
-        <a href="#" class="btn-blue mobile">Login</a>
+    <div class="form-input">
+      <label for="password">Senha</label>
+      <input [(ngModel)]="loginData.password" type="password" name="password">
+
+      <span *ngIf='errPass'>Erro! campo obrigatório</span>
     </div>
+  </div>
+
+  <div class="btns">
+    <a (click)="handleClick($event)" class="link mobile">Criar conta</a>
+    <a (click)="login()" class="btn-blue mobile">Login</a>
+  </div>
 </div>
