@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { timer } from 'rxjs';
+import Swal from 'sweetalert2';
+
 import { Login } from 'src/app/models/login';
 
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login-comp',
@@ -21,7 +22,7 @@ export class LoginCompComponent implements OnInit {
 
   errValidationBack: Array<any>;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.newLoginForm();
@@ -40,8 +41,7 @@ export class LoginCompComponent implements OnInit {
 
     this.userService.loginUser(this.loginData).subscribe(
       response => {
-        console.log(response.token)
-        this.router.navigate(['/categorias']);
+        this.localStorageService.set('JWT', response.token);
       },
       err => {
         if (err.error.message) {

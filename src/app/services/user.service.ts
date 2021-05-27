@@ -15,6 +15,7 @@ export class UserService {
 
   cadastro = `${this.url}/user`;
   login = `${this.url}/login`;
+  token = `${this.url}/token`;
 
   addUser(user: Cadastro): Observable<any> {
     return this.http.post<Cadastro>(this.cadastro, user);
@@ -22,5 +23,15 @@ export class UserService {
 
   loginUser(userData: Login): Observable<any> {
     return this.http.post<Login>(this.login, userData);
+  }
+
+  verifyToken(userToken: any): Observable<any> {
+    const header = { Authorization: `Bearer ${userToken}` };
+
+    let x = '';
+
+    return this.http.post(this.token, x, {
+      headers: header,
+    });
   }
 }
