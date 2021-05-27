@@ -12,6 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   url = 'http://localhost:8080'
+
   cadastro = `${this.url}/user`;
   login = `${this.url}/login`;
 

@@ -40,15 +40,20 @@ export class LoginCompComponent implements OnInit {
 
     this.userService.loginUser(this.loginData).subscribe(
       response => {
+        console.log(response.token)
         this.router.navigate(['/categorias']);
       },
       err => {
-        this.errValidationBack = err.error.error;
+        if (err.error.message) {
+          this.errValidationBack = err.error.message;
+        } else {
+          this.errValidationBack = err.error.error;
+        }
 
         Swal.fire({
           icon: 'error',
           title: 'Erro!',
-          text: err.error.error,
+          text: String(this.errValidationBack),
           confirmButtonText: 'Ok',
         })
       }

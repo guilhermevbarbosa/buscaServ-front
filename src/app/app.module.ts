@@ -27,6 +27,8 @@ import { PerfilComponent } from './views/perfil/perfil.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardCategoriasComponent } from './components/card-categorias/card-categorias.component';
 
+import { AuthGuardService } from './guards/auth-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,7 @@ import { CardCategoriasComponent } from './components/card-categorias/card-categ
     HttpClientModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
