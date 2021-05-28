@@ -26,6 +26,7 @@ export class LoginCompComponent implements OnInit {
 
   ngOnInit(): void {
     this.newLoginForm();
+    this.tokenValidator();
   }
 
   public handleClick(event: MouseEvent) {
@@ -42,6 +43,7 @@ export class LoginCompComponent implements OnInit {
     this.userService.loginUser(this.loginData).subscribe(
       response => {
         this.localStorageService.set('JWT', response.token);
+        this.tokenValidator();
       },
       err => {
         if (err.error.message) {
@@ -82,5 +84,13 @@ export class LoginCompComponent implements OnInit {
     if (err > 0) {
       return false;
     }
+  }
+
+  tokenValidator() {
+    const token = this.localStorageService.get('JWT');
+
+    this.userService.verifyToken(token).subscribe(() => {
+      return this.router.navigate(['/categorias']);
+    });
   }
 }
