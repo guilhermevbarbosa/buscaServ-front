@@ -16,6 +16,7 @@ export class UserService {
   cadastro = `${this.url}/user`;
   login = `${this.url}/login`;
   token = `${this.url}/token`;
+  profile = `${this.url}/profile`;
 
   addUser(user: Cadastro): Observable<any> {
     return this.http.post<Cadastro>(this.cadastro, user);
@@ -23,6 +24,10 @@ export class UserService {
 
   loginUser(userData: Login): Observable<any> {
     return this.http.post<Login>(this.login, userData);
+  }
+
+  getProfile(userId: string): Observable<any> {
+    return this.http.post<any>(this.profile, userId);
   }
 
   verifyToken(userToken: any): Observable<any> {

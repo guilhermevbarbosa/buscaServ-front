@@ -6,6 +6,7 @@ import { LoginComponent } from './views/login/login.component';
 import { PerfilComponent } from './views/perfil/perfil.component';
 
 import { AuthGuardService } from './guards/auth-guard.service';
+import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent
+  },
+  {
+    path: 'meus-dados',
+    component: MeusDadosComponent
   }
 ];
 

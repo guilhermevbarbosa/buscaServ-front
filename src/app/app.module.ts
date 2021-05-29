@@ -30,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardCategoriasComponent } from './components/card-categorias/card-categorias.component';
 
 import { AuthGuardService } from './guards/auth-guard.service';
+import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
     NavbarComponent,
     CardCategoriasComponent,
     PerfilComponent,
+    MeusDadosComponent,
   ],
   imports: [
     BrowserModule,
