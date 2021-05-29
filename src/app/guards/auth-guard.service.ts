@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie';
+
 import { UserService } from 'src/app/services/user.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(public router: Router, private localStorageService: LocalStorageService, private userService: UserService) { }
+  constructor(public router: Router, private userService: UserService, private cookieService: CookieService) { }
 
   canActivate() {
-    const token = this.localStorageService.get('JWT');
+    const token = this.cookieService.get('JWT');
 
-    const verify = this.userService.verifyToken(token).subscribe(() => { },
+    this.userService.verifyToken(token).subscribe(() => { },
       err => {
         return this.router.navigate(['/']);
       }

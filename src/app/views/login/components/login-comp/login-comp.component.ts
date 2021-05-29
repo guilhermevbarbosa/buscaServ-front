@@ -5,7 +5,8 @@ import Swal from 'sweetalert2';
 import { Login } from 'src/app/models/login';
 
 import { UserService } from 'src/app/services/user.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { LocalStorageService } from 'src/app/services/utils/local-storage.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-login-comp',
@@ -22,7 +23,7 @@ export class LoginCompComponent implements OnInit {
 
   errValidationBack: Array<any>;
 
-  constructor(private userService: UserService, private router: Router, private localStorageService: LocalStorageService) { }
+  constructor(private userService: UserService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.newLoginForm();
@@ -42,7 +43,8 @@ export class LoginCompComponent implements OnInit {
 
     this.userService.loginUser(this.loginData).subscribe(
       response => {
-        this.localStorageService.set('JWT', response.token);
+        this.cookieService.put('JWT', response.token);
+        this.cookieService.put('UID', response.uid);
         this.tokenValidator();
       },
       err => {
@@ -87,7 +89,7 @@ export class LoginCompComponent implements OnInit {
   }
 
   tokenValidator() {
-    const token = this.localStorageService.get('JWT');
+    const token = this.cookieService.get('JWT');
 
     this.userService.verifyToken(token).subscribe(() => {
       return this.router.navigate(['/categorias']);

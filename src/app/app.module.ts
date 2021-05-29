@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // Para requisições http
 
+import { CookieModule } from 'ngx-cookie';
+
 // LOGIN
 import { LoginComponent } from './views/login/login.component';
 import { LoginCompComponent } from './views/login/components/login-comp/login-comp.component';
@@ -45,7 +47,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    CookieModule.forRoot()
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]
