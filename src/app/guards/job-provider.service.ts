@@ -20,31 +20,23 @@ export class JobProvider implements CanActivate {
       return this.router.navigate(['/']);
     }
 
-    this.verifyToken(token, uid);
-  }
-
-  async getProfile(uid: string) {
-    await this.userService.getProfile(uid).subscribe(
-      response => {
-        const accountType = response.account_type;
-
-        if (accountType == 1) {
-          return true;
-        } else {
-          return this.router.navigate(['/']);
-        }
-      }
-    )
-  }
-
-  async verifyToken(token: string, uid: string) {
-    await this.userService.verifyToken(token).subscribe(
+    this.userService.verifyToken(token).subscribe(
       () => {
-        this.getProfile(uid);
+        this.userService.getProfile(uid).subscribe(
+          response => {
+            const accountType = response.account_type;
+
+            if (accountType == 0) {
+              return this.router.navigate(['/']);
+            }
+          }
+        )
       },
-      err => {
+      (err) => {
         return this.router.navigate(['/']);
       }
     );
+
+    return true;
   }
 }
