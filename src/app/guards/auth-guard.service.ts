@@ -12,7 +12,7 @@ export class AuthGuardService implements CanActivate {
 
   constructor(public router: Router, private userService: UserService, private cookieService: CookieService) { }
 
-  canActivate() {
+  async canActivate() {
     const token = this.cookieService.get('JWT');
 
     if (!token) {

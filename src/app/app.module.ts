@@ -28,9 +28,11 @@ import { PerfilComponent } from './views/perfil/perfil.component';
 // COMPONENTS
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardCategoriasComponent } from './components/card-categorias/card-categorias.component';
+import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
 
 import { AuthGuardService } from './guards/auth-guard.service';
-import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
+import { JobProvider } from './guards/job-provider.service';
+import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.compone
     CardCategoriasComponent,
     PerfilComponent,
     MeusDadosComponent,
+    NovoServicoComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.compone
     SweetAlert2Module.forRoot(),
     CookieModule.forRoot()
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, JobProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

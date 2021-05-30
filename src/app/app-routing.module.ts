@@ -3,10 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 
 import { LoginComponent } from './views/login/login.component';
+
 import { PerfilComponent } from './views/perfil/perfil.component';
+import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
+import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.component';
 
 import { AuthGuardService } from './guards/auth-guard.service';
-import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
+import { JobProvider } from './guards/job-provider.service';
 
 const routes: Routes = [
   {
@@ -20,11 +23,18 @@ const routes: Routes = [
   },
   {
     path: 'perfil',
-    component: PerfilComponent
+    component: PerfilComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'meus-dados',
-    component: MeusDadosComponent
+    component: MeusDadosComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'novo-servico',
+    component: NovoServicoComponent,
+    canActivate: [JobProvider]
   }
 ];
 
