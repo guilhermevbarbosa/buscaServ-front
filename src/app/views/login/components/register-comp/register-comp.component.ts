@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 
 import { Cadastro } from 'src/app/models/cadastro';
 import { UserService } from 'src/app/services/user.service';
+import { EstadosService } from 'src/app/services/utils/estados.service';
 
 import { MasksService } from '../../../../services/utils/masks.service';
-
 @Component({
   selector: 'app-register-comp',
   templateUrl: './register-comp.component.html',
@@ -31,11 +31,33 @@ export class RegisterCompComponent implements OnInit {
 
   errValidationBack: Array<any>;
 
-  constructor(private userService: UserService, private router: Router, private masks: MasksService) { }
+  estados = [];
+  estadosSigla = [];
+
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private masks: MasksService,
+    private estadosService: EstadosService
+  ) { }
 
   ngOnInit(): void {
     this.newUserObject();
     this.userData.state = 'SP';
+    this.userData.account_type = 0;
+    this.getAllEstados();
+  }
+
+  async getAllEstados() {
+    await this.estadosService.getEstados().subscribe(
+      response => {
+        this.estados = response;
+
+        this.estados.forEach(element => {
+          this.estadosSigla.push(element.sigla);
+        });
+      }
+    )
   }
 
   // Clique voltar ao login

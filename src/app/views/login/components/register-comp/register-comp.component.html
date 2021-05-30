@@ -45,10 +45,15 @@
     <div class="form-input">
       <label for="state">Estado</label>
       <select [(ngModel)]="userData.state" name="state">
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="RS">RS</option>
-        <option value="DF">DF</option>
+        <option *ngFor="let estado of estadosSigla" [value]="estado">{{estado}}</option>
+      </select>
+    </div>
+
+    <div class="form-input">
+      <label for="tipo_de_conta">Eu sou</label>
+      <select [(ngModel)]="userData.account_type" name="tipo_de_conta">
+        <option value="0">Usuário comum</option>
+        <option value="1">Prestador de serviço</option>
       </select>
     </div>
 

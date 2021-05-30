@@ -15,6 +15,9 @@ export class PerfilComponent implements OnInit {
   uid: string;
   accountType = 0;
 
+  estados = [];
+  estadosSigla = [];
+
   ngOnInit(): void {
     this.uid = this.cookieService.get('UID');
     this.getProfile(this.uid);
