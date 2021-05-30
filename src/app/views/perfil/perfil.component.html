@@ -9,7 +9,7 @@
     <p>Meus orçamentos</p>
   </div>
 
-  <div routerLink="/novo-servico" class="option">
+  <div *ngIf="accountType == 1" routerLink="/novo-servico" class="option">
     <p>Novo serviço</p>
   </div>
 </section>

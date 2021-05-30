@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { Cadastro } from 'src/app/models/cadastro';
 import { UserService } from 'src/app/services/user.service';
 
+import { MasksService } from '../../../../services/utils/masks.service';
+
 @Component({
   selector: 'app-register-comp',
   templateUrl: './register-comp.component.html',
@@ -29,7 +31,7 @@ export class RegisterCompComponent implements OnInit {
 
   errValidationBack: Array<any>;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private masks: MasksService) { }
 
   ngOnInit(): void {
     this.newUserObject();
@@ -146,5 +148,17 @@ export class RegisterCompComponent implements OnInit {
     this.userData.state = '';
     this.userData.city = '';
     this.userData.password = '';
+  }
+
+  convertTel(input: Element) {
+    this.masks.convertTel(<HTMLInputElement>input);
+  }
+
+  convertCPF(input: Element) {
+    this.masks.convertCPF(<HTMLInputElement>input);
+  }
+
+  convertCEP(input: Element) {
+    this.masks.convertCEP(<HTMLInputElement>input);
   }
 }

@@ -16,21 +16,21 @@
 
     <div class="form-input">
       <label for="telef">Telefone</label>
-      <input [(ngModel)]="userData.tel" type="tel" name="tel">
+      <input (input)="convertTel($event.target)" [(ngModel)]="userData.tel" type="tel" name="tel">
 
       <span *ngIf='errTel'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="cpf">CPF</label>
-      <input [(ngModel)]="userData.cpf_cnpj" type="text" name="cpf_cnpj">
+      <input (input)="convertCPF($event.target)" [(ngModel)]="userData.cpf_cnpj" type="text" name="cpf_cnpj">
 
       <span *ngIf='errCPF'>Erro campo obrigatório</span>
     </div>
 
     <div class="form-input">
       <label for="cep">CEP</label>
-      <input [(ngModel)]="userData.cep" type="text" name="cep">
+      <input (input)="convertCEP($event.target)" [(ngModel)]="userData.cep" type="text" name="cep">
 
       <span *ngIf='errCEP'>Erro campo obrigatório</span>
     </div>
