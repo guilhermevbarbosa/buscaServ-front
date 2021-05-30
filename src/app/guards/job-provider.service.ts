@@ -8,16 +8,12 @@ import { UserService } from 'src/app/services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class JobProvider implements CanActivate {
 
   constructor(public router: Router, private userService: UserService, private cookieService: CookieService) { }
 
   canActivate() {
     const token = this.cookieService.get('JWT');
-
-    if (!token) {
-      return this.router.navigate(['/']);
-    }
 
     this.userService.verifyToken(token).subscribe(() => { },
       err => {

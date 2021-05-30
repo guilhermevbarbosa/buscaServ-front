@@ -91,8 +91,10 @@ export class LoginCompComponent implements OnInit {
   tokenValidator() {
     const token = this.cookieService.get('JWT');
 
-    this.userService.verifyToken(token).subscribe(() => {
-      return this.router.navigate(['/categorias']);
-    });
+    if (token) {
+      this.userService.verifyToken(token).subscribe(() => {
+        return this.router.navigate(['/categorias']);
+      });
+    }
   }
 }
