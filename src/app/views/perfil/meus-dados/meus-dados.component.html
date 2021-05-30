@@ -1,1 +1,73 @@
 <app-navbar></app-navbar>
+
+<div class="container">
+  <form class="form">
+    <div class="form-input">
+      <label for="name">Nome</label>
+      <input [(ngModel)]="userData.name" type="text" name="name">
+
+      <span *ngIf='errName'>Erro! campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="email">E-mail</label>
+      <input [(ngModel)]="userData.email" type="text" name="email">
+
+      <span *ngIf='errEmail'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="telef">Telefone</label>
+      <input (input)="convertTel($event.target)" [(ngModel)]="userData.tel" type="tel" name="tel">
+
+      <span *ngIf='errTel'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="cpf">CPF</label>
+      <input (input)="convertCPF($event.target)" [(ngModel)]="userData.cpf_cnpj" type="text" name="cpf_cnpj">
+
+      <span *ngIf='errCPF'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="cep">CEP</label>
+      <input (input)="convertCEP($event.target)" [(ngModel)]="userData.cep" type="text" name="cep">
+
+      <span *ngIf='errCEP'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="address">Endereço</label>
+      <input [(ngModel)]="userData.address" type="text" name="address">
+
+      <span *ngIf='errEnd'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="state">Estado</label>
+      <select [(ngModel)]="userData.state" name="state">
+        <option *ngFor="let estado of estadosSigla" [value]="estado">{{estado}}</option>
+      </select>
+    </div>
+
+    <div class="form-input">
+      <label for="tipo_de_conta">Eu sou</label>
+      <select disabled [(ngModel)]="userData.account_type" name="tipo_de_conta">
+        <option value="0">Usuário comum</option>
+        <option value="1">Prestador de serviço</option>
+      </select>
+    </div>
+
+    <div class="form-input">
+      <label for="city">Cidade</label>
+      <input [(ngModel)]="userData.city" type="text" name="city">
+
+      <span *ngIf='errCity'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="btns">
+      <a (click)="save()" class="btn-blue mobile">Salvar</a>
+    </div>
+  </form>
+</div>
