@@ -27,7 +27,11 @@ export class UserService {
   }
 
   getProfile(userId: string): Observable<any> {
-    return this.http.post<any>(this.profile, userId);
+    const obj = {
+      uid: userId
+    };
+
+    return this.http.post<any>(this.profile, obj);
   }
 
   verifyToken(userToken: any): Observable<any> {
