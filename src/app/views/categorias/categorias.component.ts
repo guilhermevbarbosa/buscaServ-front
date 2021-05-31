@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CookieService } from 'ngx-cookie';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-categorias',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: CookieService, private userService: UserService, private router: Router) { }
+
+  uid: string;
+  accountType = 0;
 
   categorias = [
     {
@@ -28,6 +35,20 @@ export class CategoriasComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    this.uid = this.cookieService.get('UID');
+    this.getProfile(this.uid);
+  }
+
+  getProfile(uid: string) {
+    this.userService.getProfile(uid).subscribe(
+      response => {
+        this.accountType = response.account_type;
+
+        if (this.accountType == 1) {
+          this.router.navigate(['/perfil']);
+        }
+      }
+    )
   }
 
 }
