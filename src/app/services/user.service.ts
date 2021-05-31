@@ -17,9 +17,14 @@ export class UserService {
   login = `${this.url}/login`;
   token = `${this.url}/token`;
   profile = `${this.url}/profile`;
+  update = `${this.url}/profile-edit`;
 
   addUser(user: Cadastro): Observable<any> {
     return this.http.post<Cadastro>(this.cadastro, user);
+  }
+
+  editUser(user: any): Observable<any> {
+    return this.http.post<any>(this.update, user);
   }
 
   loginUser(userData: Login): Observable<any> {

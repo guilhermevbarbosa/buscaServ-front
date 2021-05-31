@@ -140,5 +140,27 @@ export class MeusDadosComponent implements OnInit {
 
   save() {
     this.validaForm();
+
+    let form = this.userData;
+    Object.assign(form, { id: this.uid });
+
+    this.userService.editUser(form).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          text: response.message,
+          confirmButtonText: 'Ok',
+        })
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: error.error.message,
+          confirmButtonText: 'Ok',
+        })
+      }
+    )
   }
 }
