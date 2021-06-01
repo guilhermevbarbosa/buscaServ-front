@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
 
-import { Router } from "@angular/router"
 import Swal from 'sweetalert2';
 
 import { UserService } from 'src/app/services/user.service';
@@ -151,7 +150,7 @@ export class MeusDadosComponent implements OnInit {
           title: 'Sucesso!',
           text: response.message,
           confirmButtonText: 'Ok',
-        })
+        });
       },
       error => {
         Swal.fire({
@@ -159,7 +158,7 @@ export class MeusDadosComponent implements OnInit {
           title: 'Erro!',
           text: error.error.message,
           confirmButtonText: 'Ok',
-        })
+        });
       }
     )
   }

@@ -93,7 +93,7 @@ export class RegisterCompComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Erro!',
-          text: err.error.message,
+          text: err.error.error.message,
           confirmButtonText: 'Ok',
         })
 

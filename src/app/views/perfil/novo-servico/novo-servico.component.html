@@ -1,1 +1,37 @@
 <app-navbar></app-navbar>
+
+<div class="container">
+  <form class="form">
+    <div class="form-input">
+      <label for="name">Nome</label>
+      <input [(ngModel)]="serviceData.name" type="text" name="name">
+
+      <span *ngIf='errName'>Erro! campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="description">Descrição</label>
+      <input [(ngModel)]="serviceData.description" type="text" name="description">
+
+      <span *ngIf='errDesc'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="form-input">
+      <label for="category">Categoria</label>
+      <select [(ngModel)]="serviceData.category" name="category">
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+
+    <div class="form-input">
+      <label for="aprox_val">Preço aproximado</label>
+      <input [(ngModel)]="serviceData.aprox_val" type="text" name="aprox_val">
+
+      <span *ngIf='errPrice'>Erro campo obrigatório</span>
+    </div>
+
+    <div class="btns">
+      <a (click)="save()" class="btn-blue mobile">Salvar</a>
+    </div>
+  </form>
+</div>
