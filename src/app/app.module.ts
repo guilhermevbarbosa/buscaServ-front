@@ -33,6 +33,8 @@ import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.compone
 import { AuthGuardService } from './guards/auth-guard.service';
 import { JobProvider } from './guards/job-provider.service';
 import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.component';
+import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
+import { EllipsisPipe } from './services/utils/ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.c
     PerfilComponent,
     MeusDadosComponent,
     NovoServicoComponent,
+    MeusServicosComponent,
+    EllipsisPipe,
   ],
   imports: [
     BrowserModule,

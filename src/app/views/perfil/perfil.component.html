@@ -5,8 +5,12 @@
     <p>Dados pessoais</p>
   </div>
 
-  <div class="option">
+  <div *ngIf="accountType == 0" class="option">
     <p>Meus orçamentos</p>
+  </div>
+
+  <div *ngIf="accountType == 1" routerLink="/meus-servicos" class="option">
+    <p>Meus serviços</p>
   </div>
 
   <div *ngIf="accountType == 1" routerLink="/novo-servico" class="option">

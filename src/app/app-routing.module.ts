@@ -10,6 +10,7 @@ import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.c
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { JobProvider } from './guards/job-provider.service';
+import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,12 @@ const routes: Routes = [
     path: 'novo-servico',
     component: NovoServicoComponent,
     canActivate: [JobProvider]
-  }
+  },
+  {
+    path: 'meus-servicos',
+    component: MeusServicosComponent,
+    canActivate: [JobProvider]
+  },
 ];
 
 @NgModule({
