@@ -7,12 +7,13 @@ import { LoginComponent } from './views/login/login.component';
 import { PerfilComponent } from './views/perfil/perfil.component';
 import { MeusDadosComponent } from './views/perfil/meus-dados/meus-dados.component';
 import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.component';
-
-import { AuthGuardService } from './guards/auth-guard.service';
-import { JobProvider } from './guards/job-provider.service';
 import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
+import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
+
+import { AuthGuardService } from './guards/auth-guard.service';
+import { JobProvider } from './guards/job-provider.service';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: 'categoria',
     component: CategoriaSelecionadaComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'servico',
+    component: DetalhesServicoComponent,
     canActivate: [AuthGuardService]
   },
 ];

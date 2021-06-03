@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<section>
+  <div class="service-data">
+    <h1 class="title">{{ serviceData.name }}</h1>
+    <span class="tag">{{ serviceData.category }}</span>
+  </div>
+
+  <div class="contact">
+    <p class="username">{{ serviceData.userName }}</p>
+    <p class="email">{{ serviceData.email }}</p>
+    <p class="telefone">{{ serviceData.tel }}</p>
+
+    <p class="address">
+      {{ serviceData.address }} - {{ serviceData.city }} - {{ serviceData.state }}
+    </p>
+  </div>
+
+  <div class="service-cont">
+    <p class="description">{{ serviceData.description }}</p>
+    <p class="val">{{ serviceData.aprox_val }}</p>
+  </div>
+</section>
