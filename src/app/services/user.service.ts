@@ -11,13 +11,13 @@ import { Login } from '../models/login';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  url = 'http://localhost:8080'
+  private url = 'http://localhost:8080'
 
-  cadastro = `${this.url}/user`;
-  login = `${this.url}/login`;
-  token = `${this.url}/token`;
-  profile = `${this.url}/profile`;
-  update = `${this.url}/profile-edit`;
+  private cadastro = `${this.url}/user`;
+  private login = `${this.url}/login`;
+  private token = `${this.url}/token`;
+  private profile = `${this.url}/profile`;
+  private update = `${this.url}/profile-edit`;
 
   addUser(user: Cadastro): Observable<any> {
     return this.http.post<Cadastro>(this.cadastro, user);

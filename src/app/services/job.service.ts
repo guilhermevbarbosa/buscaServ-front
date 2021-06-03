@@ -12,12 +12,13 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-  url = 'http://localhost:8080';
+  private url = 'http://localhost:8080';
 
-  cadastro = `${this.url}/service`;
-  profileJobs = `${this.url}/service/profile`;
-  getOneJob = `${this.url}/serviceId`;
-  updateRoute = `${this.url}/service/update`;
+  private cadastro = `${this.url}/service`;
+  private profileJobs = `${this.url}/service/profile`;
+  private getOneJob = `${this.url}/serviceId`;
+  private getJobsInCategory = `${this.url}/service/category/`;
+  private updateRoute = `${this.url}/service/update`;
 
   addJob(job: serviceJobModel, token: string): Observable<any> {
     const header = { Authorization: `Bearer ${token}` };
@@ -51,10 +52,22 @@ export class JobService {
     });
   }
 
-  update(job: Job, token: string): Observable<Job> {
+  getInCategory(category: string, token: string): Observable<Array<Job>> {
     const header = { Authorization: `Bearer ${token}` };
 
-    return this.http.put<Job>(this.updateRoute, job, {
+    const obj = {
+      categoria: category
+    }
+
+    return this.http.post<Array<Job>>(this.getJobsInCategory, obj, {
+      headers: header,
+    });
+  }
+
+  update(job: Job, token: string): Observable<any> {
+    const header = { Authorization: `Bearer ${token}` };
+
+    return this.http.put<any>(this.updateRoute, job, {
       headers: header,
     });
   }

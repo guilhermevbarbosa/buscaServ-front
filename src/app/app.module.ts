@@ -36,6 +36,7 @@ import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.c
 import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
 import { EllipsisPipe } from './services/utils/ellipsis.pipe';
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
+import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job
     MeusServicosComponent,
     EllipsisPipe,
     EditJobComponent,
+    CategoriaSelecionadaComponent,
   ],
   imports: [
     BrowserModule,

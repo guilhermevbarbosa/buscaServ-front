@@ -12,6 +12,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { JobProvider } from './guards/job-provider.service';
 import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
+import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
     path: 'editar-servico',
     component: EditJobComponent,
     canActivate: [JobProvider]
+  },
+  {
+    path: 'categoria',
+    component: CategoriaSelecionadaComponent,
+    canActivate: [AuthGuardService]
   },
 ];
 

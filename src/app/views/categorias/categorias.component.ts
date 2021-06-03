@@ -51,4 +51,7 @@ export class CategoriasComponent implements OnInit {
     )
   }
 
+  openCategory(category: string) {
+    this.router.navigate(['/categoria'], { queryParams: { id: category } });
+  }
 }
