@@ -35,6 +35,7 @@ import { JobProvider } from './guards/job-provider.service';
 import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.component';
 import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
 import { EllipsisPipe } from './services/utils/ellipsis.pipe';
+import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { EllipsisPipe } from './services/utils/ellipsis.pipe';
     NovoServicoComponent,
     MeusServicosComponent,
     EllipsisPipe,
+    EditJobComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 import { Job } from 'src/app/models/job';
 import { JobService } from 'src/app/services/job.service';
@@ -12,7 +14,7 @@ import { JobService } from 'src/app/services/job.service';
 })
 export class MeusServicosComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private jobsService: JobService) { }
+  constructor(private cookieService: CookieService, private jobsService: JobService, public router: Router) { }
 
   jobs: Array<Job>;
   noJobs = false;
@@ -44,5 +46,9 @@ export class MeusServicosComponent implements OnInit {
         }
       }
     )
+  }
+
+  openJob(id: string) {
+    this.router.navigate(['/editar-servico'], { queryParams: { id: id } });
   }
 }

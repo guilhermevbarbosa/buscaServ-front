@@ -16,6 +16,8 @@ export class JobService {
 
   cadastro = `${this.url}/service`;
   profileJobs = `${this.url}/service/profile`;
+  getOneJob = `${this.url}/serviceId`;
+  updateRoute = `${this.url}/service/update`;
 
   addJob(job: serviceJobModel, token: string): Observable<any> {
     const header = { Authorization: `Bearer ${token}` };
@@ -33,6 +35,26 @@ export class JobService {
     }
 
     return this.http.post<Array<Job>>(this.profileJobs, obj, {
+      headers: header,
+    });
+  }
+
+  getOne(id: string, token: string): Observable<Job> {
+    const header = { Authorization: `Bearer ${token}` };
+
+    const obj = {
+      id: id
+    }
+
+    return this.http.post<Job>(this.getOneJob, obj, {
+      headers: header,
+    });
+  }
+
+  update(job: Job, token: string): Observable<Job> {
+    const header = { Authorization: `Bearer ${token}` };
+
+    return this.http.put<Job>(this.updateRoute, job, {
       headers: header,
     });
   }

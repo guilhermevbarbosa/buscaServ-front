@@ -11,6 +11,7 @@ import { NovoServicoComponent } from './views/perfil/novo-servico/novo-servico.c
 import { AuthGuardService } from './guards/auth-guard.service';
 import { JobProvider } from './guards/job-provider.service';
 import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servicos.component';
+import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'meus-servicos',
     component: MeusServicosComponent,
+    canActivate: [JobProvider]
+  },
+  {
+    path: 'editar-servico',
+    component: EditJobComponent,
     canActivate: [JobProvider]
   },
 ];
