@@ -3,21 +3,25 @@
 <section>
   <div class="service-data">
     <h1 class="title">{{ serviceData.name }}</h1>
-    <span class="tag">{{ serviceData.category }}</span>
+    <span class="categoria">{{ serviceData.category }}</span>
   </div>
 
   <div class="contact">
-    <p class="username">{{ serviceData.userName }}</p>
-    <p class="email">{{ serviceData.email }}</p>
-    <p class="telefone">{{ serviceData.tel }}</p>
+    <div class="pt1">
+      <p class="username">Nome: {{ serviceData.userName }} </p>
+      <p class="email">E-mail: {{ serviceData.email }}</p>
+    </div>
 
-    <p class="address">
-      {{ serviceData.address }} - {{ serviceData.city }} - {{ serviceData.state }}
-    </p>
+    <div class="pt2">
+      <p class="telefone">Telefone: {{ serviceData.tel }} </p>
+      <p class="address">
+        Endereço: {{ serviceData.address }} - {{ serviceData.city }} - {{ serviceData.state }}
+      </p>
+    </div>
   </div>
 
   <div class="service-cont">
-    <p class="description">{{ serviceData.description }}</p>
-    <p class="val">{{ serviceData.aprox_val }}</p>
+    <p class="description"><strong>Descrição</strong>{{ serviceData.description }}</p>
+    <p class="val">R$ {{ serviceData.aprox_val }}</p>
   </div>
 </section>

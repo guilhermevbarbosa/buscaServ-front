@@ -9,6 +9,16 @@
 
   .form {
     width: 90%;
+
+    @media (max-width: 767px) {
+      label {
+        color: #3b69ff;
+      }
+
+      input {
+        width: 90%;
+      }
+    }
   }
 
   .btns {
