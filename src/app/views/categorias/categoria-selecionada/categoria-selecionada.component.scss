@@ -81,11 +81,14 @@
           display: flex;
           justify-content: space-between;
 
-          font-size: 15px;
-          font-weight: 400;
-          text-align: right;
-          margin-top: 10px;
-          margin-bottom: 10px;
+          input {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: right !important;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+          }
 
           b {
             text-align: left;

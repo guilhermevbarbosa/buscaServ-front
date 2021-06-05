@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie';
+import { ActivatedRoute } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie';
 import Swal from 'sweetalert2';
 
 import { JobService } from '../../services/job.service';
-import { ActivatedRoute } from '@angular/router';
+import { FavoriteService } from '../../services/favorite.service';
+
 import { Job } from 'src/app/models/job';
 
 @Component({
@@ -16,7 +18,12 @@ export class DetalhesServicoComponent implements OnInit {
   jobId: string;
   serviceData: Job;
 
-  constructor(private cookieService: CookieService, private jobService: JobService, private route: ActivatedRoute) { }
+  constructor(
+    private cookieService: CookieService,
+    private jobService: JobService,
+    private route: ActivatedRoute,
+    private favoriteService: FavoriteService
+  ) { }
 
   ngOnInit(): void {
     this.jobId = this.route.snapshot.queryParams.id;
@@ -55,5 +62,29 @@ export class DetalhesServicoComponent implements OnInit {
         });
       }
     );
+  }
+
+  favorite() {
+    const token = this.cookieService.get('JWT');
+    const uid = this.cookieService.get('UID');
+
+    this.favoriteService.create(this.jobId, uid, token).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Favoritado!',
+          text: response.message,
+          confirmButtonText: 'Ok',
+        });
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: error.message,
+          confirmButtonText: 'Ok',
+        });
+      }
+    )
   }
 }

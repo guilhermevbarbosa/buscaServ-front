@@ -1,27 +1,42 @@
 <app-navbar></app-navbar>
 
 <section>
-  <div class="service-data">
-    <h1 class="title">{{ serviceData.name }}</h1>
-    <span class="categoria">{{ serviceData.category }}</span>
-  </div>
-
-  <div class="contact">
-    <div class="pt1">
-      <p class="username">Nome: {{ serviceData.userName }} </p>
-      <p class="email">E-mail: {{ serviceData.email }}</p>
+  <div class="first-area">
+    <div class="service-data">
+      <h1 class="title">{{ serviceData.name }}</h1>
+      <span class="categoria">{{ serviceData.category }}</span>
     </div>
 
-    <div class="pt2">
-      <p class="telefone">Telefone: {{ serviceData.tel }} </p>
-      <p class="address">
-        Endereço: {{ serviceData.address }} - {{ serviceData.city }} - {{ serviceData.state }}
-      </p>
+    <div class="contact">
+      <div class="pt1">
+        <p class="username">Nome: {{ serviceData.userName }} </p>
+        <p class="email">E-mail: {{ serviceData.email }}</p>
+      </div>
+
+      <div class="pt2">
+        <p class="telefone">Telefone: {{ serviceData.tel }} </p>
+        <p class="address">
+          Endereço: {{ serviceData.address }} - {{ serviceData.city }} - {{ serviceData.state }}
+        </p>
+      </div>
+    </div>
+
+    <div class="service-cont">
+      <p class="description"><strong>Descrição</strong>{{ serviceData.description }}</p>
+
+      <div class="valor">
+        <span>Valor aproximado</span>
+        <input class="val" type="text" currencyMask disabled [(ngModel)]="serviceData.aprox_val">
+      </div>
+
+      <small>*O preço é apenas um valor aproximado, para contratar o serviço ou tirar mais dúvidas, entre em contato
+        pelos dados fornecidos pelo prestador.</small>
     </div>
   </div>
 
-  <div class="service-cont">
-    <p class="description"><strong>Descrição</strong>{{ serviceData.description }}</p>
-    <p class="val">R$ {{ serviceData.aprox_val }}</p>
+  <div class="favorite-area">
+    <button (click)="favorite()">
+      Favoritar
+    </button>
   </div>
 </section>
