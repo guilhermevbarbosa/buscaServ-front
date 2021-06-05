@@ -51,4 +51,43 @@ export class MeusServicosComponent implements OnInit {
   openJob(id: string) {
     this.router.navigate(['/editar-servico'], { queryParams: { id: id } });
   }
+
+  handleDelete(job: Job) {
+    Swal.fire({
+      icon: 'warning',
+      title: `Deseja excluir ${job.name}`,
+      showDenyButton: true,
+      confirmButtonText: "Excluir",
+      denyButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteJob(job.id);
+      }
+    })
+  }
+
+  async deleteJob(id: string) {
+    const token = this.cookieService.get('JWT');
+
+    await this.jobsService.delete(id, token).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excluido com sucesso!',
+          text: response.message,
+          confirmButtonText: 'Ok',
+        });
+
+        this.getServices();
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: error.message,
+          confirmButtonText: 'Ok',
+        });
+      }
+    );
+  }
 }

@@ -4,15 +4,19 @@
   <h2 *ngIf="noJobs">Ainda não há serviços cadastrados</h2>
 
   <div class="cards">
-    <div *ngFor="let job of jobs" (click)="openJob(job.id)" class="card">
-      <h1>{{job.name}}</h1>
-      <span class="categoria">{{job.category}}</span>
-      <p class="description">{{job.description | ellipsis:[100]}}</p>
-      <p class="value">
-        <b>Valor aproximado</b>
+    <div *ngFor="let job of jobs" class="card">
+      <div (click)="openJob(job.id)">
+        <h1>{{job.name}}</h1>
+        <span class="categoria">{{job.category}}</span>
+        <p class="description">{{job.description | ellipsis:[100]}}</p>
+        <p class="value">
+          <b>Valor aproximado</b>
 
-        <input type="text" currencyMask disabled [(ngModel)]="job.aprox_val">
-      </p>
+          <input type="text" currencyMask disabled [(ngModel)]="job.aprox_val">
+        </p>
+      </div>
+
+      <button (click)="handleDelete(job)">DELETAR</button>
     </div>
   </div>
 </div>

@@ -19,6 +19,7 @@ export class JobService {
   private getOneJob = `${this.url}/serviceId`;
   private getJobsInCategory = `${this.url}/service/category/`;
   private updateRoute = `${this.url}/service/update`;
+  private deleteRoute = `${this.url}/service/delete`;
 
   addJob(job: serviceJobModel, token: string): Observable<any> {
     const header = { Authorization: `Bearer ${token}` };
@@ -68,6 +69,18 @@ export class JobService {
     const header = { Authorization: `Bearer ${token}` };
 
     return this.http.put<any>(this.updateRoute, job, {
+      headers: header,
+    });
+  }
+
+  delete(id: string, token: string): Observable<any> {
+    const header = { Authorization: `Bearer ${token}` };
+
+    const obj = {
+      id: id
+    }
+
+    return this.http.post<any>(this.deleteRoute, obj, {
       headers: header,
     });
   }
