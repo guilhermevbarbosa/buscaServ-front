@@ -5,7 +5,9 @@ import Swal from 'sweetalert2';
 
 import { UserService } from 'src/app/services/user.service';
 import { EstadosService } from 'src/app/services/utils/estados.service';
+
 import { MasksService } from '../../../services/utils/masks.service';
+import { CepService } from '../../../services/utils/cep.service';
 
 import { Cadastro } from 'src/app/models/cadastro';
 
@@ -36,7 +38,8 @@ export class MeusDadosComponent implements OnInit {
     private cookieService: CookieService,
     private userService: UserService,
     private masks: MasksService,
-    private estadosService: EstadosService
+    private estadosService: EstadosService,
+    private cepService: CepService
   ) { }
 
   uid: string;
@@ -77,6 +80,22 @@ export class MeusDadosComponent implements OnInit {
     )
   }
 
+  async getEndereco(cep: string) {
+    if (cep.length == 9) {
+      cep = cep.replace("-", "");
+
+      await this.cepService.getData(cep).subscribe(
+        response => {
+          if (!response.erro) {
+            this.userData.state = response.uf;
+            this.userData.city = response.localidade;
+            this.userData.address = response.logradouro;
+          }
+        }
+      );
+    }
+  }
+
   newUserObject() {
     this.userData = new Cadastro();
   }
@@ -91,6 +110,7 @@ export class MeusDadosComponent implements OnInit {
 
   convertCEP(input: Element) {
     this.masks.convertCEP(<HTMLInputElement>input);
+    this.getEndereco(this.userData.cep);
   }
 
   validaForm() {

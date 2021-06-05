@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { EstadosService } from 'src/app/services/utils/estados.service';
 
 import { MasksService } from '../../../../services/utils/masks.service';
+import { CepService } from '../../../../services/utils/cep.service';
 @Component({
   selector: 'app-register-comp',
   templateUrl: './register-comp.component.html',
@@ -38,7 +39,8 @@ export class RegisterCompComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private masks: MasksService,
-    private estadosService: EstadosService
+    private estadosService: EstadosService,
+    private cepService: CepService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,22 @@ export class RegisterCompComponent implements OnInit {
         });
       }
     )
+  }
+
+  async getEndereco(cep: string) {
+    if (cep.length == 9) {
+      cep = cep.replace("-", "");
+
+      await this.cepService.getData(cep).subscribe(
+        response => {
+          if (!response.erro) {
+            this.userData.state = response.uf;
+            this.userData.city = response.localidade;
+            this.userData.address = response.logradouro;
+          }
+        }
+      );
+    }
   }
 
   // Clique voltar ao login
@@ -182,5 +200,6 @@ export class RegisterCompComponent implements OnInit {
 
   convertCEP(input: Element) {
     this.masks.convertCEP(<HTMLInputElement>input);
+    this.getEndereco(this.userData.cep);
   }
 }
