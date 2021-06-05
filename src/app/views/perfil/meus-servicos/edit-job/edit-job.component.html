@@ -25,7 +25,7 @@
 
     <div class="form-input">
       <label for="aprox_val">Preço aproximado</label>
-      <input [(ngModel)]="serviceData.aprox_val" type="text" name="aprox_val">
+      <input currencyMask [(ngModel)]="serviceData.aprox_val" type="text" name="aprox_val">
 
       <span *ngIf='errPrice'>Erro campo obrigatório</span>
     </div>

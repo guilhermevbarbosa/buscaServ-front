@@ -10,7 +10,8 @@
       <p class="description">{{job.description | ellipsis:[100]}}</p>
       <p class="value">
         <b>Valor aproximado</b>
-        {{job.aprox_val}}
+
+        <input type="text" currencyMask disabled [(ngModel)]="job.aprox_val">
       </p>
     </div>
   </div>

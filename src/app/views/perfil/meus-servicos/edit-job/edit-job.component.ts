@@ -85,27 +85,29 @@ export class EditJobComponent implements OnInit {
   save() {
     this.validaForm();
 
-    let form = this.serviceData;
-    Object.assign(form, { id: this.jobId });
-    const token = this.cookieService.get('JWT');
+    if (this.serviceData.aprox_val != null) {
+      let form = this.serviceData;
+      Object.assign(form, { id: this.jobId });
+      const token = this.cookieService.get('JWT');
 
-    this.jobService.update(form, token).subscribe(
-      response => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Sucesso!',
-          text: response.message,
-          confirmButtonText: 'Ok',
-        });
-      },
-      error => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Sucesso!',
-          text: error.message,
-          confirmButtonText: 'Ok',
-        });
-      }
-    );
+      this.jobService.update(form, token).subscribe(
+        response => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: response.message,
+            confirmButtonText: 'Ok',
+          });
+        },
+        error => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: error.message,
+            confirmButtonText: 'Ok',
+          });
+        }
+      );
+    }
   }
 }

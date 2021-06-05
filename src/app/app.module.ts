@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 // Para requisições http
 
 import { CookieModule } from 'ngx-cookie';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 
 // LOGIN
 import { LoginComponent } from './views/login/login.component';
@@ -38,6 +39,16 @@ import { EllipsisPipe } from './services/utils/ellipsis.pipe';
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: false,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   declarations: [
@@ -63,9 +74,18 @@ import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-serv
     FormsModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    CurrencyMaskModule
   ],
-  providers: [AuthGuardService, JobProvider],
+
+  providers: [
+    AuthGuardService,
+    JobProvider,
+    {
+      provide: CURRENCY_MASK_CONFIG,
+      useValue: CustomCurrencyMaskConfig
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

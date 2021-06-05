@@ -34,7 +34,6 @@ export class MasksService {
       .replace(/(-\d{3})\d+?$/, '$1');
   }
 
-
   convertTel(input: Element) {
     (<HTMLInputElement>input).value = this.tel((<HTMLInputElement>input).value);
   }
