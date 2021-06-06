@@ -11,9 +11,11 @@ import { MeusServicosComponent } from './views/perfil/meus-servicos/meus-servico
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
+import { FavoritosComponent } from './views/favoritos/favoritos.component';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { JobProvider } from './guards/job-provider.service';
+import { UserGuardService } from './guards/user-guard.service';
 
 const routes: Routes = [
   {
@@ -53,12 +55,17 @@ const routes: Routes = [
   {
     path: 'categoria',
     component: CategoriaSelecionadaComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [UserGuardService]
   },
   {
     path: 'servico',
     component: DetalhesServicoComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [UserGuardService]
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent,
+    canActivate: [UserGuardService]
   },
 ];
 

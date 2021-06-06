@@ -39,6 +39,7 @@ import { EllipsisPipe } from './services/utils/ellipsis.pipe';
 import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job.component';
 import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
+import { FavoritosComponent } from './views/favoritos/favoritos.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -67,6 +68,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     EditJobComponent,
     CategoriaSelecionadaComponent,
     DetalhesServicoComponent,
+    FavoritosComponent,
   ],
   imports: [
     BrowserModule,

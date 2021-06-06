@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h2 *ngIf="noJobs">Ainda não há favoritos</h2>
+
+  <div class="cards">
+    <div *ngFor="let job of jobs" class="card">
+      <div (click)="openJob(job.job_id.id)">
+        <h1>{{job.job_id.name}}</h1>
+        <span class="categoria">{{job.job_id.category}}</span>
+        <p class="description">{{job.job_id.description | ellipsis:[100]}}</p>
+        <p class="value">
+          <b>Valor aproximado</b>
+
+          <input type="text" currencyMask disabled [(ngModel)]="job.job_id.aprox_val">
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
