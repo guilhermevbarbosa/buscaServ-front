@@ -123,6 +123,15 @@ section {
       &:hover {
         background: #d3d327;
       }
+
+      &.desfavoritar {
+        color: #ffffff;
+        background: #f14343;
+
+        &:hover {
+          background: #c42121;
+        }
+      }
     }
   }
 }

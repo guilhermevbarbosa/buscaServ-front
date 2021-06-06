@@ -17,6 +17,7 @@ import { Job } from 'src/app/models/job';
 export class DetalhesServicoComponent implements OnInit {
   jobId: string;
   serviceData: Job;
+  favoriteEnable = true;
 
   constructor(
     private cookieService: CookieService,
@@ -29,16 +30,18 @@ export class DetalhesServicoComponent implements OnInit {
     this.jobId = this.route.snapshot.queryParams.id;
     this.newJobObject();
     this.getOne();
+
+    this.verifyIfServiceHasFavorited();
   }
 
   newJobObject() {
     this.serviceData = new Job();
   }
 
-  getOne() {
+  async getOne() {
     const token = this.cookieService.get('JWT');
 
-    this.jobService.getOne(this.jobId, token).subscribe(
+    await this.jobService.getOne(this.jobId, token).subscribe(
       response => {
         this.serviceData.name = response.name;
         this.serviceData.category = response.category;
@@ -64,11 +67,11 @@ export class DetalhesServicoComponent implements OnInit {
     );
   }
 
-  favorite() {
+  async favorite() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
 
-    this.favoriteService.create(this.jobId, uid, token).subscribe(
+    await this.favoriteService.create(this.jobId, uid, token).subscribe(
       response => {
         Swal.fire({
           icon: 'success',
@@ -76,6 +79,57 @@ export class DetalhesServicoComponent implements OnInit {
           text: response.message,
           confirmButtonText: 'Ok',
         });
+
+        this.verifyIfServiceHasFavorited();
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: error.message,
+          confirmButtonText: 'Ok',
+        });
+      }
+    )
+  }
+
+  async desfavorite() {
+    const token = this.cookieService.get('JWT');
+    const uid = this.cookieService.get('UID');
+
+    await this.favoriteService.delete(this.jobId, uid, token).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Desfavoritado!',
+          text: response.message,
+          confirmButtonText: 'Ok',
+        });
+
+        this.verifyIfServiceHasFavorited();
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: error.message,
+          confirmButtonText: 'Ok',
+        });
+      }
+    )
+  }
+
+  async verifyIfServiceHasFavorited() {
+    const token = this.cookieService.get('JWT');
+    const uid = this.cookieService.get('UID');
+
+    await this.favoriteService.verifyIfServiceHasFavorited(this.jobId, uid, token).subscribe(
+      response => {
+        if (response.count == 1) {
+          this.favoriteEnable = false;
+        } else {
+          this.favoriteEnable = true;
+        }
       },
       error => {
         Swal.fire({

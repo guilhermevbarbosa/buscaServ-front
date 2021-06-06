@@ -35,8 +35,12 @@
   </div>
 
   <div class="favorite-area">
-    <button (click)="favorite()">
+    <button *ngIf="favoriteEnable" (click)="favorite()">
       Favoritar
+    </button>
+
+    <button *ngIf="!favoriteEnable" class="desfavoritar" (click)="desfavorite()">
+      Desfavoritar
     </button>
   </div>
 </section>
