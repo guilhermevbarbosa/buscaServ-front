@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie';
+import { Location } from '@angular/common';
 
+import { CookieService } from 'ngx-cookie';
 import Swal from 'sweetalert2';
 
 import { JobService } from '../../../../services/job.service';
@@ -29,7 +30,12 @@ export class EditJobComponent implements OnInit {
     'Manutenção de outros'
   ]
 
-  constructor(private cookieService: CookieService, private jobService: JobService, private route: ActivatedRoute) { }
+  constructor(
+    private cookieService: CookieService,
+    private jobService: JobService,
+    private route: ActivatedRoute,
+    private _location: Location
+  ) { }
 
   ngOnInit(): void {
     this.newJobObject();
@@ -97,6 +103,10 @@ export class EditJobComponent implements OnInit {
             title: 'Sucesso!',
             text: response.message,
             confirmButtonText: 'Ok',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this._location.back();
+            }
           });
         },
         error => {

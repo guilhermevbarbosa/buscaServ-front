@@ -6,6 +6,7 @@ section {
 
   @media (max-width: 767px) {
     padding: 20px;
+    flex-direction: column;
   }
 
   .service-data {
@@ -110,6 +111,11 @@ section {
   }
 
   .favorite-area {
+    @media (max-width: 767px) {
+      margin: auto;
+      margin-top: 50px;
+    }
+
     button {
       padding: 10px 60px 10px 60px;
       border: 0;

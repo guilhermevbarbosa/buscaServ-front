@@ -40,6 +40,7 @@ import { EditJobComponent } from './views/perfil/meus-servicos/edit-job/edit-job
 import { CategoriaSelecionadaComponent } from './views/categorias/categoria-selecionada/categoria-selecionada.component';
 import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
 import { FavoritosComponent } from './views/favoritos/favoritos.component';
+import { VoltarComponent } from './components/voltar/voltar.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -69,6 +70,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CategoriaSelecionadaComponent,
     DetalhesServicoComponent,
     FavoritosComponent,
+    VoltarComponent,
   ],
   imports: [
     BrowserModule,
