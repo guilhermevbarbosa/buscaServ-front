@@ -41,6 +41,7 @@ import { CategoriaSelecionadaComponent } from './views/categorias/categoria-sele
 import { DetalhesServicoComponent } from './views/detalhes-servico/detalhes-servico.component';
 import { FavoritosComponent } from './views/favoritos/favoritos.component';
 import { VoltarComponent } from './components/voltar/voltar.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -71,6 +72,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     DetalhesServicoComponent,
     FavoritosComponent,
     VoltarComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

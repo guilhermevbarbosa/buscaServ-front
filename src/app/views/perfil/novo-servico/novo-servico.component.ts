@@ -27,7 +27,9 @@ export class NovoServicoComponent implements OnInit {
     'Manutenção mobile',
     'Manutenção de videogames',
     'Manutenção de outros'
-  ]
+  ];
+
+  loading = false;
 
   constructor(
     private cookieService: CookieService,
@@ -66,6 +68,7 @@ export class NovoServicoComponent implements OnInit {
 
   save() {
     this.validaForm();
+    this.loading = true;
 
     let form = this.serviceData;
     Object.assign(form, { user_id: this.cookieService.get('UID') });
@@ -73,6 +76,8 @@ export class NovoServicoComponent implements OnInit {
 
     this.jobService.addJob(form, token).subscribe(
       response => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Sucesso!',
@@ -85,6 +90,8 @@ export class NovoServicoComponent implements OnInit {
         });
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',

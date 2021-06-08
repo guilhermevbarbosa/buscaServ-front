@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from "@angular/router"
 
 import Swal from 'sweetalert2';
 
@@ -35,9 +34,10 @@ export class RegisterCompComponent implements OnInit {
   estados = [];
   estadosSigla = [];
 
+  loading = false;
+
   constructor(
     private userService: UserService,
-    private router: Router,
     private masks: MasksService,
     private estadosService: EstadosService,
     private cepService: CepService
@@ -50,8 +50,8 @@ export class RegisterCompComponent implements OnInit {
     this.getAllEstados();
   }
 
-  async getAllEstados() {
-    await this.estadosService.getEstados().subscribe(
+  getAllEstados() {
+    this.estadosService.getEstados().subscribe(
       response => {
         this.estados = response;
 
@@ -62,11 +62,11 @@ export class RegisterCompComponent implements OnInit {
     )
   }
 
-  async getEndereco(cep: string) {
+  getEndereco(cep: string) {
     if (cep.length == 9) {
       cep = cep.replace("-", "");
 
-      await this.cepService.getData(cep).subscribe(
+      this.cepService.getData(cep).subscribe(
         response => {
           if (!response.erro) {
             this.userData.state = response.uf;
@@ -89,9 +89,11 @@ export class RegisterCompComponent implements OnInit {
 
   createUser() {
     this.validaForm();
+    this.loading = true;
 
     this.userService.addUser(this.userData).subscribe(
       (response) => {
+        this.loading = false;
         this.resetForm();
 
         Swal.fire({
@@ -107,6 +109,7 @@ export class RegisterCompComponent implements OnInit {
       },
       err => {
         this.errValidationBack = err.error.errors;
+        this.loading = false;
 
         Swal.fire({
           icon: 'error',

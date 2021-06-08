@@ -30,6 +30,8 @@ export class EditJobComponent implements OnInit {
     'Manutenção de outros'
   ]
 
+  loading = true;
+
   constructor(
     private cookieService: CookieService,
     private jobService: JobService,
@@ -56,8 +58,12 @@ export class EditJobComponent implements OnInit {
         this.serviceData.description = response.description;
         this.serviceData.category = response.category;
         this.serviceData.aprox_val = response.aprox_val;
+
+        this.loading = false;
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',
@@ -90,6 +96,7 @@ export class EditJobComponent implements OnInit {
 
   save() {
     this.validaForm();
+    this.loading = true;
 
     if (this.serviceData.aprox_val != null) {
       let form = this.serviceData;
@@ -98,6 +105,8 @@ export class EditJobComponent implements OnInit {
 
       this.jobService.update(form, token).subscribe(
         response => {
+          this.loading = false;
+
           Swal.fire({
             icon: 'success',
             title: 'Sucesso!',
@@ -110,6 +119,8 @@ export class EditJobComponent implements OnInit {
           });
         },
         error => {
+          this.loading = false;
+
           Swal.fire({
             icon: 'success',
             title: 'Sucesso!',

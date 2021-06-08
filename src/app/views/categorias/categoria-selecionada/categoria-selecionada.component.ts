@@ -25,23 +25,29 @@ export class CategoriaSelecionadaComponent implements OnInit {
   noJobs = false;
   categoria: string;
 
+  loading = true;
+
   ngOnInit(): void {
     this.categoria = this.route.snapshot.queryParams.id;
     this.getServices();
   }
 
-  async getServices() {
+  getServices() {
     const token = this.cookieService.get('JWT');
 
-    await this.jobsService.getInCategory(this.categoria, token).subscribe(
+    this.jobsService.getInCategory(this.categoria, token).subscribe(
       response => {
         if (response.length > 0) {
           this.jobs = response;
         } else {
           this.noJobs = true;
         }
+
+        this.loading = false;
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',

@@ -22,17 +22,21 @@ export class FavoritosComponent implements OnInit {
   jobs: Array<any>;
   noJobs = false;
 
+  loading = true;
+
   ngOnInit(): void {
     this.getFavorites();
   }
 
-  async getFavorites() {
+  getFavorites() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
     this.jobs = [];
 
-    await this.favoritesService.getAll(uid, token).subscribe(
+    this.favoritesService.getAll(uid, token).subscribe(
       response => {
+        this.loading = false;
+
         if (response.statusCode == 400) {
           this.noJobs = true;
         } else {
@@ -41,6 +45,8 @@ export class FavoritosComponent implements OnInit {
         }
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',

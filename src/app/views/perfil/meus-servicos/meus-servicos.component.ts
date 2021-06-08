@@ -19,20 +19,25 @@ export class MeusServicosComponent implements OnInit {
   jobs: Array<Job>;
   noJobs = false;
 
+  loading = true;
+
   ngOnInit(): void {
     this.getServices();
   }
 
-  async getServices() {
+  getServices() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
+    this.loading = true;
 
-    await this.jobsService.getProfileJobs(uid, token).subscribe(
+    this.jobsService.getProfileJobs(uid, token).subscribe(
       response => {
         this.jobs = response;
+        this.loading = false;
       },
       error => {
         const message = error.error.error.message;
+        this.loading = false;
 
         if (message == 'Não possui serviços ainda') {
           this.noJobs = true;
@@ -66,11 +71,14 @@ export class MeusServicosComponent implements OnInit {
     })
   }
 
-  async deleteJob(id: string) {
+  deleteJob(id: string) {
     const token = this.cookieService.get('JWT');
+    this.loading = true;
 
-    await this.jobsService.delete(id, token).subscribe(
+    this.jobsService.delete(id, token).subscribe(
       response => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Excluido com sucesso!',
@@ -81,6 +89,8 @@ export class MeusServicosComponent implements OnInit {
         this.getServices();
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',

@@ -19,6 +19,8 @@ export class DetalhesServicoComponent implements OnInit {
   serviceData: Job;
   favoriteEnable = true;
 
+  loading = true;
+
   constructor(
     private cookieService: CookieService,
     private jobService: JobService,
@@ -30,18 +32,16 @@ export class DetalhesServicoComponent implements OnInit {
     this.jobId = this.route.snapshot.queryParams.id;
     this.newJobObject();
     this.getOne();
-
-    this.verifyIfServiceHasFavorited();
   }
 
   newJobObject() {
     this.serviceData = new Job();
   }
 
-  async getOne() {
+  getOne() {
     const token = this.cookieService.get('JWT');
 
-    await this.jobService.getOne(this.jobId, token).subscribe(
+    this.jobService.getOne(this.jobId, token).subscribe(
       response => {
         this.serviceData.name = response.name;
         this.serviceData.category = response.category;
@@ -55,6 +55,8 @@ export class DetalhesServicoComponent implements OnInit {
 
         this.serviceData.description = response.description;
         this.serviceData.aprox_val = response.aprox_val;
+
+        this.verifyIfServiceHasFavorited();
       },
       error => {
         Swal.fire({
@@ -67,12 +69,15 @@ export class DetalhesServicoComponent implements OnInit {
     );
   }
 
-  async favorite() {
+  favorite() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
+    this.loading = true;
 
-    await this.favoriteService.create(this.jobId, uid, token).subscribe(
+    this.favoriteService.create(this.jobId, uid, token).subscribe(
       response => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Favoritado!',
@@ -83,6 +88,8 @@ export class DetalhesServicoComponent implements OnInit {
         this.verifyIfServiceHasFavorited();
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',
@@ -93,12 +100,15 @@ export class DetalhesServicoComponent implements OnInit {
     )
   }
 
-  async desfavorite() {
+  desfavorite() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
+    this.loading = true;
 
-    await this.favoriteService.delete(this.jobId, uid, token).subscribe(
+    this.favoriteService.delete(this.jobId, uid, token).subscribe(
       response => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Desfavoritado!',
@@ -109,6 +119,8 @@ export class DetalhesServicoComponent implements OnInit {
         this.verifyIfServiceHasFavorited();
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',
@@ -119,17 +131,20 @@ export class DetalhesServicoComponent implements OnInit {
     )
   }
 
-  async verifyIfServiceHasFavorited() {
+  verifyIfServiceHasFavorited() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
+    this.loading = true;
 
-    await this.favoriteService.verifyIfServiceHasFavorited(this.jobId, uid, token).subscribe(
+    this.favoriteService.verifyIfServiceHasFavorited(this.jobId, uid, token).subscribe(
       response => {
         if (response.count == 1) {
           this.favoriteEnable = false;
         } else {
           this.favoriteEnable = true;
         }
+
+        this.loading = false;
       },
       error => {
         Swal.fire({
@@ -138,6 +153,8 @@ export class DetalhesServicoComponent implements OnInit {
           text: error.message,
           confirmButtonText: 'Ok',
         });
+
+        this.loading = false;
       }
     )
   }

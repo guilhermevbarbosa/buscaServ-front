@@ -23,6 +23,8 @@ export class LoginCompComponent implements OnInit {
 
   errValidationBack: Array<any>;
 
+  loading = false;
+
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
@@ -40,12 +42,15 @@ export class LoginCompComponent implements OnInit {
 
   login() {
     this.validaForm();
+    this.loading = true;
 
     this.userService.loginUser(this.loginData).subscribe(
       response => {
         this.cookieService.put('JWT', response.token);
         this.cookieService.put('UID', response.uid);
         this.tokenValidator();
+
+        this.loading = false;
       },
       err => {
         if (err.error.message) {
@@ -53,6 +58,8 @@ export class LoginCompComponent implements OnInit {
         } else {
           this.errValidationBack = err.error.error;
         }
+
+        this.loading = false;
 
         Swal.fire({
           icon: 'error',

@@ -35,6 +35,8 @@ export class MeusDadosComponent implements OnInit {
 
   userData: Cadastro;
 
+  loading = true;
+
   constructor(
     private cookieService: CookieService,
     private userService: UserService,
@@ -66,12 +68,14 @@ export class MeusDadosComponent implements OnInit {
         this.userData.state = response.state;
         this.userData.account_type = response.account_type;
         this.userData.city = response.city;
+
+        this.loading = false;
       }
     )
   }
 
-  async getAllEstados() {
-    await this.estadosService.getEstados().subscribe(
+  getAllEstados() {
+    this.estadosService.getEstados().subscribe(
       response => {
         this.estados = response;
 
@@ -82,11 +86,11 @@ export class MeusDadosComponent implements OnInit {
     )
   }
 
-  async getEndereco(cep: string) {
+  getEndereco(cep: string) {
     if (cep.length == 9) {
       cep = cep.replace("-", "");
 
-      await this.cepService.getData(cep).subscribe(
+      this.cepService.getData(cep).subscribe(
         response => {
           if (!response.erro) {
             this.userData.state = response.uf;
@@ -161,12 +165,15 @@ export class MeusDadosComponent implements OnInit {
 
   save() {
     this.validaForm();
+    this.loading = true;
 
     let form = this.userData;
     Object.assign(form, { id: this.uid });
 
     this.userService.editUser(form).subscribe(
       response => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Sucesso!',
@@ -179,6 +186,8 @@ export class MeusDadosComponent implements OnInit {
         })
       },
       error => {
+        this.loading = false;
+
         Swal.fire({
           icon: 'error',
           title: 'Erro!',

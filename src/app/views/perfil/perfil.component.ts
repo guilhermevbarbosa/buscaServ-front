@@ -18,6 +18,8 @@ export class PerfilComponent implements OnInit {
   estados = [];
   estadosSigla = [];
 
+  loading = true;
+
   ngOnInit(): void {
     this.uid = this.cookieService.get('UID');
     this.getProfile(this.uid);
@@ -27,6 +29,8 @@ export class PerfilComponent implements OnInit {
     this.userService.getProfile(uid).subscribe(
       response => {
         this.accountType = response.account_type;
+
+        this.loading = false;
       }
     )
   }
