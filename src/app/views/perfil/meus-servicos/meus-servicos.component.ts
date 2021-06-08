@@ -28,11 +28,14 @@ export class MeusServicosComponent implements OnInit {
   getServices() {
     const token = this.cookieService.get('JWT');
     const uid = this.cookieService.get('UID');
+
     this.loading = true;
+    this.jobs = [];
 
     this.jobsService.getProfileJobs(uid, token).subscribe(
       response => {
         this.jobs = response;
+
         this.loading = false;
       },
       error => {

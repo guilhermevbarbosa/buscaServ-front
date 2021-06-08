@@ -59,7 +59,7 @@ export class NovoServicoComponent implements OnInit {
       this.errDesc = false;
     }
 
-    if (!this.serviceData.aprox_val || this.serviceData.aprox_val.length < 1) {
+    if (!this.serviceData.aprox_val || Number(!this.serviceData.aprox_val) > 0) {
       this.errPrice = true;
     } else {
       this.errPrice = false;
@@ -74,31 +74,36 @@ export class NovoServicoComponent implements OnInit {
     Object.assign(form, { user_id: this.cookieService.get('UID') });
     const token = this.cookieService.get('JWT');
 
-    this.jobService.addJob(form, token).subscribe(
-      response => {
-        this.loading = false;
+    if (!this.errPrice) {
+      this.jobService.addJob(form, token).subscribe(
+        response => {
+          this.loading = false;
 
-        Swal.fire({
-          icon: 'success',
-          title: 'Sucesso!',
-          text: response.message,
-          confirmButtonText: 'Ok',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this._location.back();
-          }
-        });
-      },
-      error => {
-        this.loading = false;
+          Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: response.message,
+            confirmButtonText: 'Ok',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this._location.back();
+            }
+          });
+        },
+        error => {
+          this.loading = false;
 
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro!',
-          text: error.error.message,
-          confirmButtonText: 'Ok',
-        })
-      }
-    );
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: error.error.message,
+            confirmButtonText: 'Ok',
+          })
+        }
+      );
+    } else {
+      this.loading = false;
+    }
+
   }
 }
